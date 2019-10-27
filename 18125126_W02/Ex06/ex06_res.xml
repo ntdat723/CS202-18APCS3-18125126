@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListOfStudents>
+<student>
+	<ID>18125023</ID>
+	<LastName>Ha</LastName>
+	<FirstName>Trung</FirstName>
+	<Address>Street01</Address>
+	<DateOfBirth>20/10/1985</DateOfBirth>
+	<Mark>8.6</Mark>
+</student>
+<student>
+	<ID>18125045</ID>
+	<LastName>Ho</LastName>
+	<FirstName>Chi</FirstName>
+	<Address>Street01</Address>
+	<DateOfBirth>13/09/1999</DateOfBirth>
+	<Mark>8.6</Mark>
+</student>
+<student>
+	<ID>18125001</ID>
+	<LastName>Nguyen</LastName>
+	<FirstName>Dat</FirstName>
+	<Address>Street01</Address>
+	<DateOfBirth>23/07/2000</DateOfBirth>
+	<Mark>10</Mark>
+</student>
+<student>
+	<ID>18125002</ID>
+	<LastName>Van</LastName>
+	<FirstName>An</FirstName>
+	<Address>Street02</Address>
+	<DateOfBirth>02/02/2000</DateOfBirth>
+	<Mark>7.8</Mark>
+</student>
+</ListOfStudents>
