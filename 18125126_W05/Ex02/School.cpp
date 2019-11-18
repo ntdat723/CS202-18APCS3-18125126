@@ -1,61 +1,62 @@
-#include "Company.h"
+#include "School.h"
 
-Company::Company()
+School::School()
 {
-	name = "";
+	sName = "";
 }
 
-Company::Company(const Company& cpy)
+School::School(const School& cpy)
 {
-	name = cpy.name;
+	sName = cpy.sName;
 	List = cpy.List;
 }
 
-Company::Company(string temp)
+School::School(string temp) : School()
 {
-	name = temp;
+	sName = temp;
 }
 
-Company::Company(int temp)
+School::School(int temp)
 {
-	name = "";
+	sName = "";
 	for (int i = 0; i < temp; ++i)
 	{
-		Employee* added = new Employee;
+		Teacher* added = new Teacher;
 		List.push_back(added);
 	}
 }
 
-Company::Company(string tempName, int tempNum)
+School::School(string tempSName, int tempNum)
 {
-	name = tempName;
+	sName = tempSName;
 	for (int i = 0; i < tempNum; ++i)
 	{
-		Employee* added = new Employee;
+		Teacher* added = new Teacher;
 		List.push_back(added);
 	}
 }
 
-void Company::inputList()
+
+void School::inputList()
 {
 	int num, type;
-	Employee* in;
+	Teacher* in;
 	cout << "------------------------------------------------------------------------\n";
-	cout << "Enter the number of employees: ";
+	cout << "Enter the number of teachers: ";
 	cin >> num;
 	for (int i = 0; i < num; ++i)
 	{
-		cout << "Enter information for employee number " << i + 1 << ": \n";
-		cout << "Enter the type of employee (1 for production worker, 2 for daysman): ";
+		cout << "Enter information for teacher number " << i + 1 << ": \n";
+		cout << "Enter the type of teacher (1 for normal teacher, 2 for homeroom one): ";
 		cin >> type;
 		in = NULL;
 		if (type == 1)
 		{
-			in = new ProductionWorker;
+			in = new Teacher;
 		}
 		else if (type == 2)
 		{
-			in = new Daysman;
+			in = new Homeroom;
 		}
 		in->input();
 		List.push_back(in);
@@ -63,7 +64,7 @@ void Company::inputList()
 	cout << "------------------------------------------------------------------------\n";
 }
 
-void Company::displayList()
+void School::outputList()
 {
 	for (int i = 0; i < List.size(); ++i)
 	{
@@ -71,9 +72,9 @@ void Company::displayList()
 	}
 }
 
-double Company::totalSalary()
+int School::totalSalary()
 {
-	double total = 0;
+	int total = 0;
 	for (int i = 0; i < List.size(); ++i)
 	{
 		total += List.at(i)->salary();
@@ -81,9 +82,9 @@ double Company::totalSalary()
 	return total;
 }
 
-Employee* Company::highestSalary()
+Teacher* School::highestSalary()
 {
-	Employee* max = List.at(0);
+	Teacher* max = List.at(0);
 	double hSalary = List.at(0)->salary();
 	for (int i = 0; i < List.size(); ++i)
 	{
@@ -96,66 +97,66 @@ Employee* Company::highestSalary()
 	return max;
 }
 
-int Company::numOfDaysman()
+int School::numOfNormal()
 {
-	int n = 0;
+	int count = 0;
 	for (int i = 0; i < List.size(); ++i)
 	{
-		if (typeid(*List.at(i)) == typeid(Daysman))
+		if (typeid(*List.at(i)) == typeid(Teacher))
 		{
-			++n;
+			++count;
 		}
 	}
-	return n;
+	return count;
 }
 
-int Company::numOfProductionWorker()
+int School::numOfHomeroom()
 {
-	int n = 0;
+	int count = 0;
 	for (int i = 0; i < List.size(); ++i)
 	{
-		if (typeid(*List.at(i)) == typeid(ProductionWorker))
+		if (typeid(*List.at(i)) == typeid(Homeroom))
 		{
-			++n;
+			++count;
 		}
 	}
-	return n;
+	return count;
 }
 
-double Company::averageSalary()
+int School::averageSalary()
 {
 	return totalSalary() / List.size();
 }
 
-void Company::belowThreeMillion()
+void School::aboveTenMillion()
 {
 	for (int i = 0; i < List.size(); ++i)
 	{
-		if (List.at(i)->salary() < 3000000)
+		if (List.at(i)->salary() > 10000000)
 		{
 			List.at(i)->display();
 		}
 	}
 }
 
-Employee* Company::findByID(int found)
+Teacher* School::findByID(string found)
 {
-	Employee* res;
+	Teacher* res;
 	for (int i = 0; i < List.size(); ++i)
 	{
-		if (found == List.at(i)->getID())
+		if (found.compare(List.at(i)->getID()) == 0)
 		{
 			res = List.at(i);
 			return res;
 		}
 	}
-	res = new Employee;
+	res = new Teacher;
 	return res;
 }
 
-Employee* Company::findByName(string found)
+Teacher* School::findByName(string found)
 {
-	Employee* res;
+	Teacher* res;
 	for (int i = 0; i < List.size(); ++i)
 	{
 		if (found.compare(List.at(i)->getName()) == 0)
@@ -164,19 +165,19 @@ Employee* Company::findByName(string found)
 			return res;
 		}
 	}
-	res = new Employee;
+	res = new Teacher;
 	return res;
 }
 
-int Company::bornInMay()
+int School::overAbsence()
 {
-	int total = 0;
+	int count = 0;
 	for (int i = 0; i < List.size(); ++i)
 	{
-		if (List.at(i)->getMonth() == 5)
+		if (List.at(i)->getDaysOff() > 4)
 		{
-			++total;
+			++count;
 		}
 	}
-	return total;
+	return count;
 }
