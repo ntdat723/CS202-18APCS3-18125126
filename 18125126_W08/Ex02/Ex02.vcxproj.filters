@@ -15,7 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="18125126_Ex01.cpp">
+    <ClInclude Include="CallCenter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="18125126_Ex02.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
